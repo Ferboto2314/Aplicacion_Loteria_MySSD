@@ -40,5 +40,9 @@ namespace Aplicacion_Loteria_MySSD
 
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

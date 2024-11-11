@@ -32,9 +32,13 @@
             btnSalir = new Button();
             btnMenu = new Button();
             pbxBaraja = new PictureBox();
-            pictureBox1 = new PictureBox();
+            pbxCartaActual = new PictureBox();
+            pbxCartaAnterior = new PictureBox();
+            button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pbxBaraja).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxCartaActual).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxCartaAnterior).BeginInit();
             SuspendLayout();
             // 
             // btnSalir
@@ -62,22 +66,53 @@
             // pbxBaraja
             // 
             pbxBaraja.Image = Properties.Resources.back_2;
-            pbxBaraja.Location = new Point(322, 151);
+            pbxBaraja.Location = new Point(322, 77);
             pbxBaraja.Name = "pbxBaraja";
             pbxBaraja.Size = new Size(310, 439);
             pbxBaraja.SizeMode = PictureBoxSizeMode.StretchImage;
             pbxBaraja.TabIndex = 6;
             pbxBaraja.TabStop = false;
             // 
-            // pictureBox1
+            // pbxCartaActual
             // 
-            pictureBox1.Image = Properties.Resources._1;
-            pictureBox1.Location = new Point(739, 151);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(310, 439);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
+            pbxCartaActual.Image = Properties.Resources._1;
+            pbxCartaActual.Location = new Point(739, 77);
+            pbxCartaActual.Name = "pbxCartaActual";
+            pbxCartaActual.Size = new Size(310, 439);
+            pbxCartaActual.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbxCartaActual.TabIndex = 6;
+            pbxCartaActual.TabStop = false;
+            pbxCartaActual.Click += pictureBox1_Click;
+            // 
+            // pbxCartaAnterior
+            // 
+            pbxCartaAnterior.Image = Properties.Resources._1;
+            pbxCartaAnterior.Location = new Point(642, 545);
+            pbxCartaAnterior.Name = "pbxCartaAnterior";
+            pbxCartaAnterior.Size = new Size(108, 153);
+            pbxCartaAnterior.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbxCartaAnterior.TabIndex = 7;
+            pbxCartaAnterior.TabStop = false;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Cooper Black", 36F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(65, 120);
+            button1.Name = "button1";
+            button1.Size = new Size(192, 63);
+            button1.TabIndex = 8;
+            button1.Text = "Regresar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Cooper Black", 36F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(65, 217);
+            button2.Name = "button2";
+            button2.Size = new Size(192, 63);
+            button2.TabIndex = 8;
+            button2.Text = "Regresar";
+            button2.UseVisualStyleBackColor = true;
             // 
             // frmCartas
             // 
@@ -85,7 +120,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 231, 109);
             ClientSize = new Size(1370, 749);
-            Controls.Add(pictureBox1);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(pbxCartaAnterior);
+            Controls.Add(pbxCartaActual);
             Controls.Add(pbxBaraja);
             Controls.Add(btnMenu);
             Controls.Add(btnSalir);
@@ -97,7 +135,8 @@
             WindowState = FormWindowState.Maximized;
             Load += frmCartas_Load;
             ((System.ComponentModel.ISupportInitialize)pbxBaraja).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxCartaActual).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxCartaAnterior).EndInit();
             ResumeLayout(false);
         }
 
@@ -106,6 +145,9 @@
         private Button btnSalir;
         private Button btnMenu;
         private PictureBox pbxBaraja;
-        private PictureBox pictureBox1;
+        private PictureBox pbxCartaActual;
+        private PictureBox pbxCartaAnterior;
+        private Button button1;
+        private Button button2;
     }
 }
