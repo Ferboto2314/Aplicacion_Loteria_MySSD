@@ -2,15 +2,8 @@
 {
     partial class FrmMenu
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenu));
@@ -37,55 +26,55 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label1.AutoSize = true;
+            label1.AutoSize = true; // Permite que el Label se ajuste al tamaño del texto
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cooper Black", 48F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(522, 48);
             label1.Name = "label1";
-            label1.Size = new Size(341, 74);
-            label1.TabIndex = 0;
             label1.Text = "LOTERIA";
+            label1.ForeColor = Color.FromArgb(188, 108, 37);
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnComemzar
             // 
-            btnComemzar.Font = new Font("Cooper Black", 48F, FontStyle.Regular, GraphicsUnit.Point);
-            btnComemzar.Location = new Point(473, 573);
+            btnComemzar.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnComemzar.Name = "btnComemzar";
-            btnComemzar.Size = new Size(440, 136);
-            btnComemzar.TabIndex = 1;
             btnComemzar.Text = "COMENZAR";
             btnComemzar.UseVisualStyleBackColor = true;
             btnComemzar.Click += button1_Click;
+            btnComemzar.ForeColor = Color.White;
+            btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
+            btnComemzar.AutoSize = true;
+            btnComemzar.Padding = new System.Windows.Forms.Padding(20);
             // 
             // btnAbout
             // 
-            btnAbout.Font = new Font("Cooper Black", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAbout.Location = new Point(1127, 638);
+            btnAbout.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnAbout.Name = "btnAbout";
-            btnAbout.Size = new Size(192, 76);
-            btnAbout.TabIndex = 2;
             btnAbout.Text = "Sobre el Proyecto";
             btnAbout.UseVisualStyleBackColor = true;
             btnAbout.Click += btnAbout_Click;
+            btnComemzar.ForeColor = Color.White;
+            btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
+            btnAbout.AutoSize = true;
+            btnComemzar.Padding = new System.Windows.Forms.Padding(20);
             // 
             // btnSalir
             // 
-            btnSalir.Font = new Font("Cooper Black", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSalir.Location = new Point(1127, 569);
+            btnSalir.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(192, 63);
-            btnSalir.TabIndex = 3;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += btnSalir_Click;
+            btnComemzar.ForeColor = Color.White;
+            btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
+            btnSalir.AutoSize = true;
+            btnComemzar.Padding = new System.Windows.Forms.Padding(20);
             // 
             // FrmMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(252, 231, 109);
+            BackColor = Color.FromArgb(254, 250, 224);
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1370, 749);
             Controls.Add(btnSalir);
@@ -100,6 +89,9 @@
             Load += FrmMenu_Load;
             ResumeLayout(false);
             PerformLayout();
+            CentrarLabel();
+            AlinearBotones();  // Alinear los botones al pie de la ventana
+            this.Resize += FrmMenu_Resize;
         }
 
         #endregion
@@ -108,5 +100,28 @@
         private Button btnComemzar;
         private Button btnAbout;
         private Button btnSalir;
+
+        // Método para centrar el Label
+        private void CentrarLabel()
+        {
+            int posX = (this.ClientSize.Width - label1.Width) / 2;
+            label1.Location = new Point(posX, 0);
+        }
+
+        // Método para alinear los botones al pie de la ventana
+        private void AlinearBotones()
+        {
+            int posX = (this.ClientSize.Width - (btnComemzar.Width + btnAbout.Width + btnSalir.Width + 40)) / 2; // 40 para el espaciado
+            btnComemzar.Location = new Point(posX, this.ClientSize.Height - btnComemzar.Height - 100); // Ubica el primer botón
+            btnAbout.Location = new Point(btnComemzar.Right + 10, this.ClientSize.Height - btnAbout.Height - 100); // Segundo botón
+            btnSalir.Location = new Point(btnAbout.Right + 10, this.ClientSize.Height - btnSalir.Height - 100); // Tercer botón
+        }
+
+        // Evento Resize para mantener los botones alineados al cambiar el tamaño de la ventana
+        private void FrmMenu_Resize(object sender, EventArgs e)
+        {
+            CentrarLabel();
+            AlinearBotones();
+        }
     }
 }
