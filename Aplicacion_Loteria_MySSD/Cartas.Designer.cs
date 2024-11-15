@@ -34,8 +34,9 @@
             pbxBaraja = new PictureBox();
             pbxCartaActual = new PictureBox();
             pbxCartaAnterior = new PictureBox();
-            button1 = new Button();
-            button2 = new Button();
+            btnNextCard = new Button();
+            btnMix = new Button();
+            btnPorcentaje = new Button();
             ((System.ComponentModel.ISupportInitialize)pbxBaraja).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxCartaActual).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxCartaAnterior).BeginInit();
@@ -43,24 +44,28 @@
             // 
             // btnSalir
             // 
+            btnSalir.BackColor = Color.FromArgb(96, 108, 56);
             btnSalir.Font = new Font("Cooper Black", 36F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSalir.ForeColor = Color.White;
             btnSalir.Location = new Point(1166, 674);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(192, 63);
             btnSalir.TabIndex = 4;
             btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
             // btnMenu
             // 
+            btnMenu.BackColor = Color.FromArgb(96, 108, 56);
             btnMenu.Font = new Font("Cooper Black", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMenu.Location = new Point(1166, 35);
+            btnMenu.ForeColor = Color.White;
+            btnMenu.Location = new Point(1151, 35);
             btnMenu.Name = "btnMenu";
             btnMenu.Size = new Size(192, 63);
             btnMenu.TabIndex = 5;
             btnMenu.Text = "Menú";
-            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.UseVisualStyleBackColor = false;
             btnMenu.Click += btnMenu_Click;
             // 
             // pbxBaraja
@@ -94,25 +99,44 @@
             pbxCartaAnterior.TabIndex = 7;
             pbxCartaAnterior.TabStop = false;
             // 
-            // button1
+            // btnNextCard
             // 
-            button1.Font = new Font("Cooper Black", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(65, 120);
-            button1.Name = "button1";
-            button1.Size = new Size(192, 63);
-            button1.TabIndex = 8;
-            button1.Text = "Regresar";
-            button1.UseVisualStyleBackColor = true;
+            btnNextCard.BackColor = Color.FromArgb(96, 108, 56);
+            btnNextCard.Font = new Font("Cooper Black", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            btnNextCard.ForeColor = Color.White;
+            btnNextCard.Location = new Point(65, 120);
+            btnNextCard.Name = "btnNextCard";
+            btnNextCard.Size = new Size(192, 91);
+            btnNextCard.TabIndex = 8;
+            btnNextCard.Text = "Siguiente Carta";
+            btnNextCard.UseVisualStyleBackColor = false;
+            btnNextCard.Click += button1_Click;
             // 
-            // button2
+            // btnMix
             // 
-            button2.Font = new Font("Cooper Black", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(65, 217);
-            button2.Name = "button2";
-            button2.Size = new Size(192, 63);
-            button2.TabIndex = 8;
-            button2.Text = "Regresar";
-            button2.UseVisualStyleBackColor = true;
+            btnMix.BackColor = Color.FromArgb(96, 108, 56);
+            btnMix.Font = new Font("Cooper Black", 26.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMix.ForeColor = Color.White;
+            btnMix.Location = new Point(65, 217);
+            btnMix.Name = "btnMix";
+            btnMix.Size = new Size(192, 63);
+            btnMix.TabIndex = 8;
+            btnMix.Text = "Mezclar";
+            btnMix.UseVisualStyleBackColor = false;
+            btnMix.Click += btnMix_Click;
+            // 
+            // btnPorcentaje
+            // 
+            btnPorcentaje.BackColor = Color.FromArgb(96, 108, 56);
+            btnPorcentaje.Font = new Font("Cooper Black", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPorcentaje.ForeColor = Color.White;
+            btnPorcentaje.Location = new Point(1151, 217);
+            btnPorcentaje.Name = "btnPorcentaje";
+            btnPorcentaje.Size = new Size(192, 63);
+            btnPorcentaje.TabIndex = 9;
+            btnPorcentaje.Text = "% de Cartas";
+            btnPorcentaje.UseVisualStyleBackColor = false;
+            btnPorcentaje.Click += btnPorcentaje_Click;
             // 
             // frmCartas
             // 
@@ -120,8 +144,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 231, 109);
             ClientSize = new Size(1370, 749);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnPorcentaje);
+            Controls.Add(btnMix);
+            Controls.Add(btnNextCard);
             Controls.Add(pbxCartaAnterior);
             Controls.Add(pbxCartaActual);
             Controls.Add(pbxBaraja);
@@ -147,7 +172,8 @@
         private PictureBox pbxBaraja;
         private PictureBox pbxCartaActual;
         private PictureBox pbxCartaAnterior;
-        private Button button1;
-        private Button button2;
+        private Button btnNextCard;
+        private Button btnMix;
+        private Button btnPorcentaje;
     }
 }
