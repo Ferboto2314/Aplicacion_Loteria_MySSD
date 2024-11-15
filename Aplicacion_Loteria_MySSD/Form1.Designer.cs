@@ -26,49 +26,59 @@
             // 
             // label1
             // 
-            label1.AutoSize = true; // Permite que el Label se ajuste al tamaño del texto
+            label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cooper Black", 48F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Name = "label1";
-            label1.Text = "LOTERIA";
             label1.ForeColor = Color.FromArgb(188, 108, 37);
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(341, 74);
+            label1.TabIndex = 3;
+            label1.Text = "LOTERIA";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnComemzar
             // 
-            btnComemzar.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            btnComemzar.Name = "btnComemzar";
-            btnComemzar.Text = "COMENZAR";
-            btnComemzar.UseVisualStyleBackColor = true;
-            btnComemzar.Click += button1_Click;
-            btnComemzar.ForeColor = Color.White;
-            btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
             btnComemzar.AutoSize = true;
-            btnComemzar.Padding = new System.Windows.Forms.Padding(20);
+            btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
+            btnComemzar.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
+            btnComemzar.ForeColor = Color.White;
+            btnComemzar.Location = new Point(0, 0);
+            btnComemzar.Name = "btnComemzar";
+            btnComemzar.Padding = new Padding(20);
+            btnComemzar.Size = new Size(317, 96);
+            btnComemzar.TabIndex = 2;
+            btnComemzar.Text = "COMENZAR";
+            btnComemzar.UseVisualStyleBackColor = false;
+            btnComemzar.Click += button1_Click;
             // 
             // btnAbout
             // 
-            btnAbout.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAbout.Name = "btnAbout";
-            btnAbout.Text = "Sobre el Proyecto";
-            btnAbout.UseVisualStyleBackColor = true;
-            btnAbout.Click += btnAbout_Click;
-            btnComemzar.ForeColor = Color.White;
-            btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
             btnAbout.AutoSize = true;
-            btnComemzar.Padding = new System.Windows.Forms.Padding(20);
+            btnAbout.BackColor = Color.FromArgb(96, 108, 56);
+            btnAbout.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAbout.ForeColor = Color.White;
+            btnAbout.Location = new Point(0, 0);
+            btnAbout.Name = "btnAbout";
+            btnAbout.Size = new Size(385, 56);
+            btnAbout.TabIndex = 1;
+            btnAbout.Text = "Sobre el Proyecto";
+            btnAbout.UseVisualStyleBackColor = false;
+            btnAbout.Click += btnAbout_Click;
             // 
             // btnSalir
             // 
-            btnSalir.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
-            btnComemzar.ForeColor = Color.White;
-            btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
             btnSalir.AutoSize = true;
-            btnComemzar.Padding = new System.Windows.Forms.Padding(20);
+            btnSalir.BackColor = Color.FromArgb(96, 108, 56);
+            btnSalir.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSalir.ForeColor = Color.White;
+            btnSalir.Location = new Point(0, 0);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(129, 56);
+            btnSalir.TabIndex = 0;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += btnSalir_Click;
             // 
             // FrmMenu
             // 
@@ -87,11 +97,9 @@
             Text = "Loteria Mexicana";
             WindowState = FormWindowState.Maximized;
             Load += FrmMenu_Load;
+            Resize += FrmMenu_Resize;
             ResumeLayout(false);
             PerformLayout();
-            CentrarLabel();
-            AlinearBotones();  // Alinear los botones al pie de la ventana
-            this.Resize += FrmMenu_Resize;
         }
 
         #endregion
