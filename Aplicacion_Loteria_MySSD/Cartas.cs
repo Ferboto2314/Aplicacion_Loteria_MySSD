@@ -18,6 +18,7 @@ namespace Aplicacion_Loteria_MySSD
         private List<Carta> Baraja = new List<Carta>(); // Array de cartas
         private List<Carta> Historial = new List<Carta>(); // Array para el historial
         private int CartasTotal = 0;
+        private Porcentaje porcentajeForm;  //Instancia unica del formulario Porcentaje
 
         public frmCartas()
         {
@@ -109,8 +110,41 @@ namespace Aplicacion_Loteria_MySSD
 
         private void btnPorcentaje_Click(object sender, EventArgs e)
         {
-            Porcentaje frmPorcentaje = new Porcentaje(Baraja);
-            frmPorcentaje.Show();
+            if (Historial.Count == 0)
+            {
+                MessageBox.Show("No hay cartas seleccionadas para mostrar.");
+                return;
+            }
+
+            // Tomar la última carta del historial
+            Carta cartaSeleccionada = Historial.Last();
+
+            // Crear los datos de la carta seleccionada
+            string[] datosCarta = new string[]
+            {
+                cartaSeleccionada.ID.ToString(),
+                cartaSeleccionada.VecesAparecidas.ToString(),
+                cartaSeleccionada.TasaAparicion.ToString("P2"), // Tasa como porcentaje
+            };
+
+            // Si el formulario no está inicializado, crear uno nuevo
+            if (porcentajeForm == null)
+            {
+                porcentajeForm = new Porcentaje();
+            }
+
+            // Pasar los datos al formulario
+            porcentajeForm.CargarDatos(datosCarta);
+
+            // Mostrar el formulario (sin crear otra instancia)
+            if (!porcentajeForm.Visible)
+            {
+                porcentajeForm.Show();
+            }
+            else
+            {
+                porcentajeForm.BringToFront(); // Traerlo al frente si ya está abierto
+            }
         }
 
         private void btnMix_Click(object sender, EventArgs e)

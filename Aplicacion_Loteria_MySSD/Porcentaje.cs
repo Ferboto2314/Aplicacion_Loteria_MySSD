@@ -13,36 +13,31 @@ namespace Aplicacion_Loteria_MySSD
 {
     public partial class Porcentaje : Form
     {
-        private List<Carta> baraja;
-        public Porcentaje(List<Carta> baraja)
+        //Lista para almacenar todas las cartas seleccionadas
+        private List<string[]> datosAcumulados = new List<string[]>();
+
+        public Porcentaje()
         {
             InitializeComponent();
-            this.baraja = baraja;
-
-            // Llamar al método para mostrar las estadísticas
-            MostrarEstadisticas();
         }
 
-        private void MostrarEstadisticas()
+        // Método para agregar datos al DataGridView
+        public void CargarDatos(string[] nuevaCarta)
         {
-            // Limpiar cualquier dato anterior en el DataGridView
-            dataGridView1.Rows.Clear();
+            // Calcular el valor de "# Rectangular"
+            float tasaAparicion = float.Parse(nuevaCarta[2].TrimEnd('%')) / 100;
+            string valorRectangular = tasaAparicion.ToString("F4"); // Formato con 4 decimales
 
-            // Añadir cada carta como fila en el DataGridView
-            foreach (var carta in baraja)
-            {
-                dataGridView1.Rows.Add(carta.ID, carta.VecesAparecidas, carta.TasaAparicion.ToString("F8"));
-            }
+            // Crear una fila combinada con el nuevo valor
+            string[] filaConRectangular = nuevaCarta.Concat(new string[] { valorRectangular }).ToArray();
 
-            // Opcional: Personalizar las columnas del DataGridView si es necesario
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[1].HeaderText = "Veces Aparecidas";
-            dataGridView1.Columns[2].HeaderText = "Tasa de Aparición";
+            // Agregar la fila al DataGridView
+            dataGridView1.Rows.Add(filaConRectangular);
         }
 
-        private void Porcentaje_Load(object sender, EventArgs e)
+        private void btnPorcentaje_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
         }
     }
 }
