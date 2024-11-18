@@ -31,16 +31,15 @@
             dataGridView1 = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             Num_Apariciones = new DataGridViewTextBoxColumn();
-            Tasa_Aparicion = new DataGridViewTextBoxColumn();
-            Num_Rectangular = new DataGridViewTextBoxColumn();
             btnPorcentaje = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, Num_Apariciones, Tasa_Aparicion, Num_Rectangular });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, Num_Apariciones });
             dataGridView1.Location = new Point(194, 72);
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
@@ -62,20 +61,6 @@
             Num_Apariciones.MinimumWidth = 6;
             Num_Apariciones.Name = "Num_Apariciones";
             Num_Apariciones.Width = 125;
-            // 
-            // Tasa_Aparicion
-            // 
-            Tasa_Aparicion.HeaderText = "% Aparicion";
-            Tasa_Aparicion.MinimumWidth = 6;
-            Tasa_Aparicion.Name = "Tasa_Aparicion";
-            Tasa_Aparicion.Width = 125;
-            // 
-            // Num_Rectangular
-            // 
-            Num_Rectangular.HeaderText = "# Rectangular";
-            Num_Rectangular.MinimumWidth = 6;
-            Num_Rectangular.Name = "Num_Rectangular";
-            Num_Rectangular.Width = 125;
             // 
             // btnPorcentaje
             // 
@@ -102,6 +87,7 @@
             Controls.Add(dataGridView1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Porcentaje";
+            Load += Porcentaje_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -109,10 +95,8 @@
         #endregion
 
         private DataGridView dataGridView1;
+        private Button btnPorcentaje;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Num_Apariciones;
-        private DataGridViewTextBoxColumn Tasa_Aparicion;
-        private DataGridViewTextBoxColumn Num_Rectangular;
-        private Button btnPorcentaje;
     }
 }

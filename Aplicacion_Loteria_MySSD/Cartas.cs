@@ -87,16 +87,15 @@ namespace Aplicacion_Loteria_MySSD
             Carta cartaSeleccionada = Baraja[indice];
 
             // Mostrar la carta anterior en el segundo PictureBox (pictureBox2)
-            if (Historial.Count > 0) // Solo mostrar la carta anterior si existe en el historial
+            if (Historial.Count > 0)
             {
                 Carta cartaAnterior = Historial[Historial.Count - 1];
-                pbxCartaAnterior.Image = cartaAnterior.Imagen; // Mostrar la carta anterior
+                pbxCartaAnterior.Image = cartaAnterior.Imagen;
             }
 
-            // Actualización de datos de la carta seleccionada
+            // Actualizar datos de la carta seleccionada
             cartaSeleccionada.VecesAparecidas++;
             CartasTotal++;
-            cartaSeleccionada.TasaAparicion = (float)cartaSeleccionada.VecesAparecidas / CartasTotal;
 
             // Agregar la carta al historial
             Historial.Add(cartaSeleccionada);
@@ -106,7 +105,16 @@ namespace Aplicacion_Loteria_MySSD
 
             // Mostrar la carta seleccionada en el PictureBox principal (pbxCartaActual)
             pbxCartaActual.Image = cartaSeleccionada.Imagen;
+
+            // Actualizar las tasas uniformes en el formulario de porcentaje, si está abierto
+            if (porcentajeForm != null)
+            {
+                porcentajeForm.ActualizarTasasUniformes(Historial, CartasTotal);
+            }
         }
+
+
+
 
         private void btnPorcentaje_Click(object sender, EventArgs e)
         {

@@ -19,6 +19,8 @@ namespace Aplicacion_Loteria_MySSD
         public Porcentaje()
         {
             InitializeComponent();
+            dataGridView1.Columns.Add("Tasa Aparición", "Tasa Aparición");
+            dataGridView1.Columns.Add("# Rectangular", "# Rectangular");
         }
 
         // Método para agregar datos al DataGridView
@@ -35,9 +37,35 @@ namespace Aplicacion_Loteria_MySSD
             dataGridView1.Rows.Add(filaConRectangular);
         }
 
+        public void ActualizarTasasUniformes(List<Carta> historial, int cartasTotal)
+        {
+            // Calcular la tasa uniforme
+            float tasaUniforme = 1.0f / cartasTotal;
+
+            foreach (DataGridViewRow fila in dataGridView1.Rows)
+            {
+                // Ignorar filas vacías o incompletas
+                if (fila.IsNewRow || fila.Cells["ID"].Value == null) continue;
+
+                // Actualizar la columna "Tasa Aparición"
+                fila.Cells["Tasa Aparición"].Value = (tasaUniforme * 100).ToString("F2") + "%";
+
+                // Actualizar la columna "# Rectangular" (tasa dividida entre 100)
+                fila.Cells["# Rectangular"].Value = tasaUniforme.ToString("F4");
+            }
+        }
+
+
+
+
         private void btnPorcentaje_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void Porcentaje_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
