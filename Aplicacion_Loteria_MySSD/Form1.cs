@@ -16,7 +16,8 @@ namespace Aplicacion_Loteria_MySSD
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-
+            frmAbout frmAbout = new frmAbout();
+            frmAbout.Show();
         }
 
         private void FrmMenu_Load(object sender, EventArgs e)

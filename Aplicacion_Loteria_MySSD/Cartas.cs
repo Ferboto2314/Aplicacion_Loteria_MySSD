@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 
+
 namespace Aplicacion_Loteria_MySSD
 {
     public partial class frmCartas : Form
     {
-        
 
+        public event Action<List<Carta>> HistorialActualizado;
         private List<Carta> Baraja = new List<Carta>(); // Array de cartas
         private List<Carta> Historial = new List<Carta>(); // Array para el historial
         private int CartasTotal = 0;
@@ -81,100 +82,143 @@ namespace Aplicacion_Loteria_MySSD
         {
             if (Baraja.Count == 0) return;
 
-            // Selección aleatoria de una carta
             Random rand = new Random();
-            int indice = rand.Next(Baraja.Count);
-            Carta cartaSeleccionada = Baraja[indice];
+            Carta cartaSeleccionada = null;
 
-            // Mostrar la carta anterior en el segundo PictureBox (pictureBox2)
-            if (Historial.Count > 0)
+            // Seleccionar una carta válida (cumpla con KS)
+            while (true)
             {
-                Carta cartaAnterior = Historial[Historial.Count - 1];
-                pbxCartaAnterior.Image = cartaAnterior.Imagen;
+                int indice = rand.Next(Baraja.Count);
+                cartaSeleccionada = Baraja[indice];
+
+                // Temporariamente añade la carta al historial
+                Historial.Add(cartaSeleccionada);
+
+                // Realiza la prueba KS
+                if (RealizarPruebaKS())
+                {
+                    // Si pasa la prueba KS, elimina la carta de la baraja y rompe el ciclo
+                    Baraja.RemoveAt(indice);
+                    break;
+                }
+
+                // Si no pasa, retira la carta del historial temporal
+                Historial.RemoveAt(Historial.Count - 1);
             }
 
-            // Actualizar datos de la carta seleccionada
+            // Incrementar estadísticas globales
             cartaSeleccionada.VecesAparecidas++;
             CartasTotal++;
 
-            // Agregar la carta al historial
-            Historial.Add(cartaSeleccionada);
-
-            // Eliminar la carta seleccionada de la Baraja
-            Baraja.RemoveAt(indice);
-
-            // Mostrar la carta seleccionada en el PictureBox principal (pbxCartaActual)
-            pbxCartaActual.Image = cartaSeleccionada.Imagen;
-
-            // Actualizar las tasas uniformes en el formulario de porcentaje, si está abierto
-            if (porcentajeForm != null)
+            // Actualizar la tasa de aparición de todas las cartas
+            foreach (var carta in Historial)
             {
-                porcentajeForm.ActualizarTasasUniformes(Historial, CartasTotal);
+                carta.TasaAparicion = (float)carta.VecesAparecidas / CartasTotal;
             }
+
+            // Mostrar la carta seleccionada
+            pbxCartaActual.Image = cartaSeleccionada.Imagen;
+            if (Historial.Count > 1)
+            {
+                pbxCartaAnterior.Image = Historial[Historial.Count - 2].Imagen;
+            }
+
+            // Actualizar el formulario de porcentaje si está abierto
+            porcentajeForm?.CargarHistorial(Historial);
         }
+
+
+        private bool RealizarPruebaKS()
+        {
+            if (Historial.Count < 2) return true; // No hay suficientes datos para la prueba KS
+
+            // Distribución observada: frecuencias acumuladas de las cartas seleccionadas
+            var frecuenciasObservadas = Historial
+                .GroupBy(c => c.ID)
+                .OrderBy(g => g.Key)
+                .Select(g => (float)g.Count() / Historial.Count)
+                .ToList();
+
+            // Distribución esperada: uniforme
+            var distribucionEsperada = Enumerable.Repeat(1.0f / 54, 54).Take(frecuenciasObservadas.Count).ToList();
+
+            // Calcula la estadística KS (máxima diferencia absoluta)
+            float maxDiferencia = 0;
+            for (int i = 0; i < frecuenciasObservadas.Count; i++)
+            {
+                float diferencia = Math.Abs(frecuenciasObservadas[i] - distribucionEsperada[i]);
+                if (diferencia > maxDiferencia)
+                    maxDiferencia = diferencia;
+            }
+
+            // Valor crítico para el nivel de significancia deseado (0.05)
+            float valorCritico = 1.36f / (float)Math.Sqrt(Historial.Count);
+
+            // Cumple la prueba KS si la máxima diferencia es menor al valor crítico
+            return maxDiferencia < valorCritico;
+        }
+
+
+
 
 
 
 
         private void btnPorcentaje_Click(object sender, EventArgs e)
         {
-            if (Historial.Count == 0)
-            {
-                MessageBox.Show("No hay cartas seleccionadas para mostrar.");
-                return;
-            }
-
-            // Tomar la última carta del historial
-            Carta cartaSeleccionada = Historial.Last();
-
-            // Crear los datos de la carta seleccionada
-            string[] datosCarta = new string[]
-            {
-                cartaSeleccionada.ID.ToString(),
-                cartaSeleccionada.VecesAparecidas.ToString(),
-                cartaSeleccionada.TasaAparicion.ToString("P2"), // Tasa como porcentaje
-            };
-
-            // Si el formulario no está inicializado, crear uno nuevo
             if (porcentajeForm == null)
             {
                 porcentajeForm = new Porcentaje();
             }
 
-            // Pasar los datos al formulario
-            porcentajeForm.CargarDatos(datosCarta);
+            // Suscribir el formulario al evento si no lo está
+            HistorialActualizado -= porcentajeForm.CargarHistorial; // Evitar suscripciones duplicadas
+            HistorialActualizado += porcentajeForm.CargarHistorial;
 
-            // Mostrar el formulario (sin crear otra instancia)
+            // Mostrar el formulario
             if (!porcentajeForm.Visible)
             {
                 porcentajeForm.Show();
             }
             else
             {
-                porcentajeForm.BringToFront(); // Traerlo al frente si ya está abierto
+                porcentajeForm.BringToFront();
             }
+
+            // Cargar historial inicial
+            porcentajeForm.CargarHistorial(Historial);
         }
+
+
 
         private void btnMix_Click(object sender, EventArgs e)
         {
-            // Agregar todas las cartas de Historial a Baraja
-            foreach (var carta in Historial)
-            {
-                Baraja.Add(carta);
-            }
+            // Agregar todas las cartas del historial a la baraja
+            Baraja.AddRange(Historial);
 
-            // Limpiar el historial
+            // Limpiar el historial, pero mantener las estadísticas acumuladas
             Historial.Clear();
 
             // Opcional: Mostrar un mensaje confirmando que las cartas se han devuelto
-            MessageBox.Show("Las cartas han sido devueltas a la baraja.");
+            MessageBox.Show("Las cartas han sido devueltas a la baraja. Las estadísticas acumuladas permanecen.");
+
+            // Limpiar los PictureBox
+            pbxCartaActual.Image = null;
+            pbxCartaAnterior.Image = null;
+
+            // Actualizar el formulario de porcentaje, si está abierto
+            porcentajeForm?.CargarHistorial(Historial);
         }
+
+
     }
+
     public class Carta
     {
         public int ID { get; set; }
         public Image Imagen { get; set; }
         public int VecesAparecidas { get; set; }
         public float TasaAparicion { get; set; }
+        public float numeroRectangular { get; set; }
     }
 }

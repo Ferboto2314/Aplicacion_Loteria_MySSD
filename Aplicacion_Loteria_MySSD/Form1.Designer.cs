@@ -43,7 +43,7 @@
             btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
             btnComemzar.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnComemzar.ForeColor = Color.White;
-            btnComemzar.Location = new Point(0, 0);
+            btnComemzar.Location = new Point(147, 122);
             btnComemzar.Name = "btnComemzar";
             btnComemzar.Padding = new Padding(20);
             btnComemzar.Size = new Size(317, 96);
@@ -85,6 +85,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(254, 250, 224);
+            BackgroundImage = Properties.Resources._7673108;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1370, 749);
             Controls.Add(btnSalir);

@@ -80,7 +80,6 @@
             // 
             // pbxCartaActual
             // 
-            pbxCartaActual.Image = Properties.Resources._1;
             pbxCartaActual.Location = new Point(739, 77);
             pbxCartaActual.Name = "pbxCartaActual";
             pbxCartaActual.Size = new Size(310, 439);
@@ -91,7 +90,6 @@
             // 
             // pbxCartaAnterior
             // 
-            pbxCartaAnterior.Image = Properties.Resources._1;
             pbxCartaAnterior.Location = new Point(642, 545);
             pbxCartaAnterior.Name = "pbxCartaAnterior";
             pbxCartaAnterior.Size = new Size(108, 153);
@@ -144,6 +142,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 231, 109);
             ClientSize = new Size(1370, 749);
+            ControlBox = false;
             Controls.Add(btnPorcentaje);
             Controls.Add(btnMix);
             Controls.Add(btnNextCard);

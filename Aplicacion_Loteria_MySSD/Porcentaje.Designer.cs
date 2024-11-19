@@ -40,13 +40,13 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, Num_Apariciones });
-            dataGridView1.Location = new Point(194, 72);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
+            dataGridView1.Location = new Point(170, 54);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(544, 396);
+            dataGridView1.Size = new Size(476, 297);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // ID
             // 
@@ -67,10 +67,9 @@
             btnPorcentaje.BackColor = Color.FromArgb(96, 108, 56);
             btnPorcentaje.Font = new Font("Cooper Black", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnPorcentaje.ForeColor = Color.White;
-            btnPorcentaje.Location = new Point(291, 494);
-            btnPorcentaje.Margin = new Padding(3, 4, 3, 4);
+            btnPorcentaje.Location = new Point(255, 370);
             btnPorcentaje.Name = "btnPorcentaje";
-            btnPorcentaje.Size = new Size(337, 84);
+            btnPorcentaje.Size = new Size(295, 63);
             btnPorcentaje.TabIndex = 10;
             btnPorcentaje.Text = "Cerrar ventana";
             btnPorcentaje.UseVisualStyleBackColor = false;
@@ -78,14 +77,13 @@
             // 
             // Porcentaje
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(252, 231, 109);
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             ControlBox = false;
             Controls.Add(btnPorcentaje);
             Controls.Add(dataGridView1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Porcentaje";
             Load += Porcentaje_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

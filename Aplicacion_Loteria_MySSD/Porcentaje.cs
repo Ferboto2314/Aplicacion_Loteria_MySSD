@@ -19,6 +19,9 @@ namespace Aplicacion_Loteria_MySSD
         public Porcentaje()
         {
             InitializeComponent();
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("ID", "ID");
+            dataGridView1.Columns.Add("Veces Aparecidas", "Veces Aparecidas");
             dataGridView1.Columns.Add("Tasa Aparición", "Tasa Aparición");
             dataGridView1.Columns.Add("# Rectangular", "# Rectangular");
         }
@@ -28,7 +31,7 @@ namespace Aplicacion_Loteria_MySSD
         {
             // Calcular el valor de "# Rectangular"
             float tasaAparicion = float.Parse(nuevaCarta[2].TrimEnd('%')) / 100;
-            string valorRectangular = tasaAparicion.ToString("F4"); // Formato con 4 decimales
+            string valorRectangular = tasaAparicion.ToString("F5"); // Formato con 5 decimales
 
             // Crear una fila combinada con el nuevo valor
             string[] filaConRectangular = nuevaCarta.Concat(new string[] { valorRectangular }).ToArray();
@@ -67,5 +70,32 @@ namespace Aplicacion_Loteria_MySSD
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        public void CargarHistorial(List<Carta> historial)
+        {
+            // Limpiar filas previas en el DataGridView
+            dataGridView1.Rows.Clear();
+
+            // Añadir cada carta del historial al DataGridView
+            foreach (var carta in historial)
+            {
+                dataGridView1.Rows.Add(
+                    carta.ID,
+                    carta.VecesAparecidas,
+                    carta.TasaAparicion.ToString("P2"), // Tasa como porcentaje
+                    carta.TasaAparicion.ToString("F5") // Número rectangular (tasa en decimal)
+                );
+            }
+        }
+
+
+
+
+
     }
 }
