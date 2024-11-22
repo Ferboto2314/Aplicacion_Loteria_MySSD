@@ -42,7 +42,7 @@
             label1.ForeColor = Color.FromArgb(188, 108, 37);
             label1.Location = new Point(94, 28);
             label1.Name = "label1";
-            label1.Size = new Size(603, 74);
+            label1.Size = new Size(751, 91);
             label1.TabIndex = 4;
             label1.Text = "Sobre el Proyecto";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -55,7 +55,7 @@
             label2.ForeColor = Color.Black;
             label2.Location = new Point(0, 133);
             label2.Name = "label2";
-            label2.Size = new Size(818, 279);
+            label2.Size = new Size(1029, 351);
             label2.TabIndex = 5;
             label2.Text = resources.GetString("label2.Text");
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -66,9 +66,9 @@
             btnSalir.BackColor = Color.FromArgb(96, 108, 56);
             btnSalir.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(326, 430);
+            btnSalir.Location = new Point(360, 502);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(166, 56);
+            btnSalir.Size = new Size(207, 67);
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Cerrar";
             btnSalir.UseVisualStyleBackColor = false;
@@ -76,17 +76,18 @@
             // 
             // frmAbout
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = Color.FromArgb(252, 231, 109);
-            ClientSize = new Size(813, 498);
+            ClientSize = new Size(1031, 603);
             ControlBox = false;
             Controls.Add(btnSalir);
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "frmAbout";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "About";
             ResumeLayout(false);
             PerformLayout();

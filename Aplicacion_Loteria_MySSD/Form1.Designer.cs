@@ -32,7 +32,7 @@
             label1.ForeColor = Color.FromArgb(188, 108, 37);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(341, 74);
+            label1.Size = new Size(424, 91);
             label1.TabIndex = 3;
             label1.Text = "LOTERIA";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -43,10 +43,11 @@
             btnComemzar.BackColor = Color.FromArgb(96, 108, 56);
             btnComemzar.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnComemzar.ForeColor = Color.White;
-            btnComemzar.Location = new Point(147, 122);
+            btnComemzar.Location = new Point(168, 163);
+            btnComemzar.Margin = new Padding(3, 4, 3, 4);
             btnComemzar.Name = "btnComemzar";
-            btnComemzar.Padding = new Padding(20);
-            btnComemzar.Size = new Size(317, 96);
+            btnComemzar.Padding = new Padding(23, 27, 23, 27);
+            btnComemzar.Size = new Size(391, 128);
             btnComemzar.TabIndex = 2;
             btnComemzar.Text = "COMENZAR";
             btnComemzar.UseVisualStyleBackColor = false;
@@ -59,8 +60,9 @@
             btnAbout.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnAbout.ForeColor = Color.White;
             btnAbout.Location = new Point(0, 0);
+            btnAbout.Margin = new Padding(3, 4, 3, 4);
             btnAbout.Name = "btnAbout";
-            btnAbout.Size = new Size(385, 56);
+            btnAbout.Size = new Size(482, 128);
             btnAbout.TabIndex = 1;
             btnAbout.Text = "Sobre el Proyecto";
             btnAbout.UseVisualStyleBackColor = false;
@@ -73,8 +75,9 @@
             btnSalir.Font = new Font("Cooper Black", 30F, FontStyle.Regular, GraphicsUnit.Point);
             btnSalir.ForeColor = Color.White;
             btnSalir.Location = new Point(0, 0);
+            btnSalir.Margin = new Padding(3, 4, 3, 4);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(129, 56);
+            btnSalir.Size = new Size(158, 128);
             btnSalir.TabIndex = 0;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
@@ -82,17 +85,18 @@
             // 
             // FrmMenu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(254, 250, 224);
             BackgroundImage = Properties.Resources._7673108;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1370, 749);
+            ClientSize = new Size(1566, 999);
             Controls.Add(btnSalir);
             Controls.Add(btnAbout);
             Controls.Add(btnComemzar);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "FrmMenu";
             Text = "Loteria Mexicana";

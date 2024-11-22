@@ -85,64 +85,52 @@ namespace Aplicacion_Loteria_MySSD
             Random rand = new Random();
             Carta cartaSeleccionada = null;
 
-            // Seleccionar una carta válida (cumpla con KS)
             while (true)
             {
                 int indice = rand.Next(Baraja.Count);
                 cartaSeleccionada = Baraja[indice];
 
-                // Temporariamente añade la carta al historial
                 Historial.Add(cartaSeleccionada);
 
-                // Realiza la prueba KS
                 if (RealizarPruebaKS())
                 {
-                    // Si pasa la prueba KS, elimina la carta de la baraja y rompe el ciclo
                     Baraja.RemoveAt(indice);
                     break;
                 }
 
-                // Si no pasa, retira la carta del historial temporal
                 Historial.RemoveAt(Historial.Count - 1);
             }
 
-            // Incrementar estadísticas globales
             cartaSeleccionada.VecesAparecidas++;
             CartasTotal++;
 
-            // Actualizar la tasa de aparición de todas las cartas
             foreach (var carta in Historial)
             {
                 carta.TasaAparicion = (float)carta.VecesAparecidas / CartasTotal;
             }
 
-            // Mostrar la carta seleccionada
             pbxCartaActual.Image = cartaSeleccionada.Imagen;
             if (Historial.Count > 1)
             {
                 pbxCartaAnterior.Image = Historial[Historial.Count - 2].Imagen;
             }
 
-            // Actualizar el formulario de porcentaje si está abierto
             porcentajeForm?.CargarHistorial(Historial);
         }
 
 
         private bool RealizarPruebaKS()
         {
-            if (Historial.Count < 2) return true; // No hay suficientes datos para la prueba KS
+            if (Historial.Count < 2) return true;
 
-            // Distribución observada: frecuencias acumuladas de las cartas seleccionadas
             var frecuenciasObservadas = Historial
                 .GroupBy(c => c.ID)
                 .OrderBy(g => g.Key)
                 .Select(g => (float)g.Count() / Historial.Count)
                 .ToList();
 
-            // Distribución esperada: uniforme
             var distribucionEsperada = Enumerable.Repeat(1.0f / 54, 54).Take(frecuenciasObservadas.Count).ToList();
 
-            // Calcula la estadística KS (máxima diferencia absoluta)
             float maxDiferencia = 0;
             for (int i = 0; i < frecuenciasObservadas.Count; i++)
             {
@@ -151,10 +139,8 @@ namespace Aplicacion_Loteria_MySSD
                     maxDiferencia = diferencia;
             }
 
-            // Valor crítico para el nivel de significancia deseado (0.05)
             float valorCritico = 1.36f / (float)Math.Sqrt(Historial.Count);
 
-            // Cumple la prueba KS si la máxima diferencia es menor al valor crítico
             return maxDiferencia < valorCritico;
         }
 
